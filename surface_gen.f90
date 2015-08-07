@@ -18,4 +18,17 @@
 PROGRAM SURFACE_GEN
 IMPLICIT NONE
 !
+character(len=25) :: file_name
 
+
+!
+!...INPUT SECTION
+!
+write(*,*)'ENTER INPUT FILE NAME: '
+read(*,*)file_name
+
+
+write(*,*)'YOU ENTERED: '
+write(*,*)file_name
+
+END 
