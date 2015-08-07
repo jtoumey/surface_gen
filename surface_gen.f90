@@ -47,7 +47,9 @@ end do
 close(2)
 !
 write(*,*)'...FINISHED READING FILE.'
+write(*,202)n
 !
 101 format(3x,'*** n = ',i4,3x,'x = ',f14.7,3x,'y = ',f14.7,' ***')
+202 format(3x,'READ',i4,3x,'DATA POINTS.')
 !
 END 
