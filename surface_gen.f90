@@ -28,11 +28,9 @@ double precision x(n),y(n)
 !
 write(*,*)'ENTER INPUT FILE NAME: '
 read(*,*)file_name
-
-
+!
 write(*,*)'YOU ENTERED: '
 write(*,*)file_name
-
 !
 !...
 !
