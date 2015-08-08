@@ -32,32 +32,26 @@ double precision x(n),y(n)
 write(*,*)'ENTER INPUT FILE NAME: '
 read(*,*)file_name
 !
-write(*,*)'FILE NAME YOU ENTERED: '
-write(*,*)file_name
-!
-!...
+!...Open and read the file
 !
 open(unit=2,file = file_name)
 write(*,*)'READING INPUT FILE...'
-!
+
+!   store the first line to a buffer
+
 read(2,'(a)')buffer
-print*,buffer(1:10)
-!
+
+!   test if the keyword is correct, parse based on tab character, read the number of points
+
 if (buffer(1:10) == 'num_points') then
-   !read(buffer(11:1000),*)num_points
    iblnk = index(buffer,'	')
    read(buffer(iblnk:),*)num_points
-   !
-   print *,num_points
-
+!   print error if the first keyword is incorrect, end the program
 else
    print *, '!!! FIRST LINE OF FILE MUST CONTAIN KEYWORD num_points, TAB CHARACTER, THEN NUMBER OF POINTS. !!!'
    stop
 endif
 !
-
-
-
 !...loop over lines in file
 !
 do ii = 1,num_points
