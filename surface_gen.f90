@@ -77,13 +77,13 @@ read(*,*)axis_value,reflect_value
 !read(buf_reflect(iblnk2:),*)reflect_value
 
 if (axis_value == 'x') then
-   dummy = x
-elseif (axis_value == 'y') then
    dummy = y
+elseif (axis_value == 'y') then
+   dummy = x
 endif
 !
 do ii = 1,num_points
-   reflect_points(ii) = dummy(ii) - 2.*dummy(ii) - reflect_value
+   reflect_points(ii) = dummy(ii) - 2.*dummy(ii) + reflect_value
 end do
 
 write(*,*)reflect_points
