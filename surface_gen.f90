@@ -19,12 +19,14 @@ PROGRAM SURFACE_GEN
 !
 IMPLICIT NONE
 !
-integer ii,iblnk
+integer ii,iblnk,iblnk2
 integer num_points
 !
-character(len=1000) :: buffer
+character(len=1000) :: buffer,buf_reflect
 character(len=25  ) :: file_name
-double precision, dimension(:), allocatable :: x,y
+character(len=2   ) :: axis_value
+double precision, dimension(:), allocatable :: x,y,reflect_points,dummy
+integer reflect_value
 !
 !...INPUT SECTION
 !
@@ -53,7 +55,7 @@ endif
 !
 !...allocate memory for the columns in the file
 !
-allocate(x(num_points),y(num_points))
+allocate(x(num_points),y(num_points),reflect_points(num_points),dummy(num_points))
 !
 !...loop over lines in file
 !
@@ -66,9 +68,44 @@ close(2)
 write(*,*)'...FINISHED READING FILE.'
 write(*,202)num_points
 !
+write(*,*)'ENTER REFLECTION AXIS: [x/y axis, reflection value]: '
+read(*,*)axis_value,reflect_value
+
+!write(*,*)buf_reflect
+!iblnk2 = index(buf_reflect,'=')
+!write(*,*)iblnk2
+!read(buf_reflect(iblnk2:),*)reflect_value
+
+if (axis_value == 'x') then
+   dummy = x
+elseif (axis_value == 'y') then
+   dummy = y
+endif
+!
+do ii = 1,num_points
+   reflect_points(ii) = dummy(ii) - 2.*dummy(ii) - reflect_value
+end do
+
+write(*,*)reflect_points
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+!
 !...deallocate memory
 !
 deallocate(x,y)
+deallocate(reflect_points)
 !
 101 format(3x,'*** n = ',i4,3x,'x = ',f14.7,3x,'y = ',f14.7,' ***')
 202 format(3x,'READ',i4,3x,'DATA POINTS.')
