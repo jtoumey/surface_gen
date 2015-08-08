@@ -18,14 +18,15 @@
 PROGRAM SURFACE_GEN
 IMPLICIT NONE
 !
-integer n,ii,iblnk
-parameter(n=5)
+integer ii,iblnk
+integer num_points
 
 character(len=1000) :: buffer
-integer num_points
+double precision, dimension(:), allocatable :: x,y
+
 !
 character(len=25) :: file_name
-double precision x(n),y(n)
+!double precision x(n),y(n)
 !
 !...INPUT SECTION
 !
@@ -52,6 +53,10 @@ else
    stop
 endif
 !
+!...allocate memory for the columns in the file
+!
+allocate(x(num_points),y(num_points))
+!
 !...loop over lines in file
 !
 do ii = 1,num_points
@@ -62,6 +67,10 @@ close(2)
 !
 write(*,*)'...FINISHED READING FILE.'
 write(*,202)num_points
+!
+!...deallocate memory
+!
+deallocate(x,y)
 !
 101 format(3x,'*** n = ',i4,3x,'x = ',f14.7,3x,'y = ',f14.7,' ***')
 202 format(3x,'READ',i4,3x,'DATA POINTS.')
