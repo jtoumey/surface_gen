@@ -16,17 +16,15 @@
 !                                                                         !
 !*************************************************************************!
 PROGRAM SURFACE_GEN
+!
 IMPLICIT NONE
 !
 integer ii,iblnk
 integer num_points
-
-character(len=1000) :: buffer
-double precision, dimension(:), allocatable :: x,y
-
 !
-character(len=25) :: file_name
-!double precision x(n),y(n)
+character(len=1000) :: buffer
+character(len=25  ) :: file_name
+double precision, dimension(:), allocatable :: x,y
 !
 !...INPUT SECTION
 !
