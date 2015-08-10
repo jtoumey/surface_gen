@@ -70,24 +70,21 @@ write(*,202)num_points
 !
 write(*,*)'ENTER REFLECTION AXIS: [x/y axis, reflection value]: '
 read(*,*)axis_value,reflect_value
-
-!write(*,*)buf_reflect
-!iblnk2 = index(buf_reflect,'=')
-!write(*,*)iblnk2
-!read(buf_reflect(iblnk2:),*)reflect_value
-
+!
+!...store the points to be reflected in a dummy array
+!
 if (axis_value == 'x') then
    dummy = y
 elseif (axis_value == 'y') then
    dummy = x
 endif
-!
+!   reflect the points
 do ii = 1,num_points
-   reflect_points(ii) = dummy(ii) - 2.*dummy(ii) + reflect_value
+   reflect_points(ii) = 2. * reflect_value - dummy(ii)
 end do
-
+!   test
 write(*,*)reflect_points
-
+!
 
 
 
