@@ -21,6 +21,7 @@ IMPLICIT NONE
 !
 integer ii,iblnk,iblnk2
 integer num_points
+logical x_write,y_write
 !
 character(len=1000) :: buffer,buf_reflect
 character(len=25  ) :: file_name
@@ -75,29 +76,34 @@ read(*,*)axis_value,reflect_value
 !
 if (axis_value == 'x') then
    dummy = y
-elseif (axis_value == 'y') then
+   y_write = .TRUE.
+else if (axis_value == 'y') then
    dummy = x
-endif
+end if
 !   reflect the points
 do ii = 1,num_points
    reflect_points(ii) = 2. * reflect_value - dummy(ii)
 end do
-!   test
-write(*,*)reflect_points
 !
-
-
-
-
-
-
-
-
-
-
-
-
-
+!...write output to file
+!
+open(unit=7,file='refl_points.dat',action="write",status="replace")
+!
+!...write original points
+!
+do ii = 1,num_points
+   write(7,302)x(ii),y(ii)
+end do
+!
+if (y_write) then
+   do ii = 1,num_points
+      write(7,302)x(ii),reflect_points(ii)
+   end do
+else
+   do ii = 1,num_points
+      write(7,302)reflect_points(ii),y(ii)
+   end do
+end if
 !
 !...deallocate memory
 !
@@ -106,5 +112,6 @@ deallocate(reflect_points)
 !
 101 format(3x,'*** n = ',i4,3x,'x = ',f14.7,3x,'y = ',f14.7,' ***')
 202 format(3x,'READ',i4,3x,'DATA POINTS.')
+302 format(3x,f12.5,3x,f12.5)
 !
 END 
