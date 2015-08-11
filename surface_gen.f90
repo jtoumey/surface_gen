@@ -19,6 +19,7 @@ PROGRAM SURFACE_GEN
 !
 IMPLICIT NONE
 !
+integer input_mode
 integer ii,iblnk,iblnk2
 integer num_points
 logical x_write,y_write
@@ -31,6 +32,27 @@ integer reflect_value
 !
 !...INPUT SECTION
 !
+write(*,*),'CHOOSE NOZZLE CREATION METHOD: '
+write(*,*),'   1. SUPPLY INPUT FILE'
+write(*,*),'   2. USE HERMITE INTERPOLATION'
+write(*,*),'   3. USE CUBIC SPLINES'
+!
+read(*,*)input_mode
+!
+if (input_mode == 1) then
+   !
+else if (input_mode == 2) then
+   !
+else if (input_mode == 3) then
+   !
+else 
+   write(*,*)'!!! INVALID INPUT SELECTION. PLEASE CHOOSE (1), (2), OR (3) !!!'
+end if
+!
+
+
+
+
 write(*,*)'ENTER INPUT FILE NAME: '
 read(*,*)file_name
 !
