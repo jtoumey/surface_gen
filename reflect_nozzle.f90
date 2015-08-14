@@ -19,7 +19,7 @@
 !  Output Files: surface  Output file containing surface coordinates      !
 !                                                                         !
 !*************************************************************************!
-SUBROUTINE REFLECT_AXIS(file_name,buffer,num_points,iblnk,x,y,reflect_points,dummy)
+SUBROUTINE REFLECT_AXIS
 IMPLICIT NONE
 !
 character(len=25  ) :: file_name

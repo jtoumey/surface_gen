@@ -22,13 +22,17 @@ IMPLICIT NONE
 integer input_mode
 integer ii,iblnk,iblnk2
 integer num_points
-logical x_write,y_write
+logical x_write,y_write,get_input
 !
 character(len=1000) :: buffer,buf_reflect
 character(len=25  ) :: file_name
 character(len=2   ) :: axis_value
 double precision, dimension(:), allocatable :: x,y,reflect_points,dummy
 integer reflect_value
+!
+!...Initialization
+get_input = .FALSE.
+y_write   = .FALSE.
 !
 !...INPUT SECTION
 !
@@ -37,20 +41,24 @@ write(*,*),'   1. SUPPLY INPUT FILE'
 write(*,*),'   2. USE HERMITE INTERPOLATION'
 write(*,*),'   3. USE CUBIC SPLINES'
 !
-read(*,*)input_mode
 !
-if (input_mode == 1) then
-   !
-   call reflect_nozzle
-   !
-else if (input_mode == 2) then
-   !
-else if (input_mode == 3) then
-   !
-else 
-   write(*,*)'!!! INVALID INPUT SELECTION. PLEASE CHOOSE (1), (2), OR (3) !!!'
-end if
 !
+do while (.NOT. get_input)
+   read(*,*)input_mode
+   !
+   if (input_mode == 1) then
+      !
+      call reflect_nozzle
+      !
+   else if (input_mode == 2) then
+   !
+   else if (input_mode == 3) then
+   !
+   else 
+      write(*,*)'!!! INVALID INPUT SELECTION. PLEASE CHOOSE (1), (2), OR (3) !!!'
+   end if
+   !
+end do
 
 
 
