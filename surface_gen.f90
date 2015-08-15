@@ -20,12 +20,7 @@ PROGRAM SURFACE_GEN
 IMPLICIT NONE
 !
 integer input_mode
-integer ii,iblnk,iblnk2
-integer num_points
-logical x_write,y_write,get_input
-!
-double precision, dimension(:), allocatable :: x,y,reflect_points,dummy
-integer reflect_value
+logical get_input
 !
 !...Initialization
 !
@@ -38,9 +33,10 @@ write(*,*),'   1. SUPPLY INPUT FILE'
 write(*,*),'   2. USE HERMITE INTERPOLATION'
 write(*,*),'   3. USE CUBIC SPLINES'
 !
-!
+!...Input loop
 !
 do while (.NOT. get_input)
+   !
    read(*,*)input_mode
    !
    if (input_mode == 1) then
@@ -56,10 +52,8 @@ do while (.NOT. get_input)
    end if
    !
 end do
-
-
-
-
-
+!
+write(*,*)'FINISHED GENERATING OUTPUT FILE output_points.dat.'
+write(*,*)'DONE.'
 !
 END 
