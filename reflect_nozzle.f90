@@ -14,12 +14,11 @@
 !                for the nozzle surface.                                  !
 !                                                                         !
 !                Inputs:                                                  !
-!                  num_points   Number of points in the input file        !
 !                                                                         !
 !  Output Files: surface  Output file containing surface coordinates      !
 !                                                                         !
 !*************************************************************************!
-SUBROUTINE REFLECT_AXIS
+SUBROUTINE REFLECT_NOZZLE
 IMPLICIT NONE
 !
 character(len=25  ) :: file_name
@@ -109,5 +108,4 @@ deallocate(reflect_points)
 101 format(3x,'*** n = ',i4,3x,'x = ',f14.7,3x,'y = ',f14.7,' ***')
 202 format(3x,'READ',i4,3x,'DATA POINTS.')
 302 format(3x,f12.5,3x,f12.5)
-END SUBROUTINE REFLECT_AXIS
-
+END SUBROUTINE REFLECT_NOZZLE
