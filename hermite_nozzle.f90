@@ -24,6 +24,11 @@ IMPLICIT NONE
 !
 logical get_input
 !
+write(*,*)'A______             ______'
+write(*,*)'        \          /'
+write(*,*)'          \______/'
+write(*,*)''
+
 !
 !...Set input switch, so main routine will exit input loop
 !
