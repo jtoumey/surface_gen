@@ -18,13 +18,20 @@
 !  Output Files: surface  Output file containing surface coordinates      !
 !                                                                         !
 !*************************************************************************!
-SUBROUTINE REFLECT_NOZZLE
+SUBROUTINE REFLECT_NOZZLE(get_input)
 IMPLICIT NONE
 !
 character(len=25  ) :: file_name
 character(len=1000) :: buffer
+character(len=2   ) :: axis_value
+logical get_input,y_write
 integer ii,num_points,iblnk
+double precision reflect_value
 double precision, dimension(:), allocatable :: x,y,reflect_points,dummy
+!
+!...Variable initialization
+!
+y_write = .FALSE.
 !
 write(*,*)'ENTER INPUT FILE NAME: '
 read(*,*)file_name
@@ -82,7 +89,7 @@ end do
 !
 !...write output to file
 !
-open(unit=7,file='refl_points.dat',action="write",status="replace")
+open(unit=7,file='output_points.dat',action="write",status="replace")
 !
 !...write original points
 !
@@ -105,7 +112,14 @@ end if
 deallocate(x,y)
 deallocate(reflect_points)
 !
+!...Set input switch, so main routine will exit input loop
+!
+get_input = .TRUE.
+!
+!...Format statements
+!
 101 format(3x,'*** n = ',i4,3x,'x = ',f14.7,3x,'y = ',f14.7,' ***')
 202 format(3x,'READ',i4,3x,'DATA POINTS.')
 302 format(3x,f12.5,3x,f12.5)
+!
 END SUBROUTINE REFLECT_NOZZLE

@@ -24,15 +24,12 @@ integer ii,iblnk,iblnk2
 integer num_points
 logical x_write,y_write,get_input
 !
-character(len=1000) :: buffer,buf_reflect
-character(len=25  ) :: file_name
-character(len=2   ) :: axis_value
 double precision, dimension(:), allocatable :: x,y,reflect_points,dummy
 integer reflect_value
 !
 !...Initialization
+!
 get_input = .FALSE.
-y_write   = .FALSE.
 !
 !...INPUT SECTION
 !
@@ -48,7 +45,7 @@ do while (.NOT. get_input)
    !
    if (input_mode == 1) then
       !
-      call reflect_nozzle
+      call reflect_nozzle(get_input)
       !
    else if (input_mode == 2) then
    !
