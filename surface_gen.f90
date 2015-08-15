@@ -44,9 +44,13 @@ do while (.NOT. get_input)
       call reflect_nozzle(get_input)
       !
    else if (input_mode == 2) then
-   !
+      !
+      call hermite_nozzle(get_input)
+      !
    else if (input_mode == 3) then
-   !
+      !
+
+      !
    else 
       write(*,*)'!!! INVALID INPUT SELECTION. PLEASE CHOOSE (1), (2), OR (3) !!!'
    end if

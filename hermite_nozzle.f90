@@ -22,7 +22,7 @@
 SUBROUTINE HERMITE_NOZZLE(get_input)
 IMPLICIT NONE
 !
-
+logical get_input
 !
 !
 !...Set input switch, so main routine will exit input loop
