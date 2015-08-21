@@ -33,6 +33,9 @@ theta = 2. * PI / mesh_size
 !
 !...move axially along C-D nozzle
 !
+!   open output file
+!
+open(unit=7,file='CD_nozzle_2D.dat',access='APPEND',status='unknown')
 !
 do ii = 1,num_points
    !
@@ -47,13 +50,14 @@ do ii = 1,num_points
    end do
    
    ! write current three x, y, and z arrays to a file, append mode
-   open(unit=7,file='CD_nozzle_2D.dat',access='APPEND',status='unknown')
    do nn = 1,mesh_size
       write(7,101)x_coord(nn),y_coord(nn),z_coord(nn)
    end do
-   close(7)
 end do
-
+!
+!...close output file
+!
+close(7)
 
 ! call triangulation sub-routine
    ! 1. triangulate intake
