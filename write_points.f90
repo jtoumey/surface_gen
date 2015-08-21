@@ -47,9 +47,9 @@ do ii = 1,num_points
    end do
    
    ! write current three x, y, and z arrays to a file, append mode
-   open(unit=7,file='CD_nozzle_2D.dat',access='APPEND',status='new')
+   open(unit=7,file='CD_nozzle_2D.dat',access='APPEND',status='old')
    do nn = 1,mesh_size
-      write(2,101)x_coord(nn),y_coord(nn),z_coord(nn)
+      write(7,101)x_coord(nn),y_coord(nn),z_coord(nn)
    end do
    close(7)
 end do
