@@ -107,6 +107,10 @@ else
    end do
 end if
 !
+!
+!
+call write_points(num_points,x,y)
+!
 !...deallocate memory
 !
 deallocate(x,y)
