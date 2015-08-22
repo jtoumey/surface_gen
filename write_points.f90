@@ -17,15 +17,11 @@ integer mm,nn
 double precision, dimension(:), allocatable :: x_coord,y_coord,z_coord
 double precision d,theta,angle
 !
-
 PI = 4.D0 * DATAN(1.D0)
-!x(1) = ! x(1) from file, probably 0
-!y(1) = 0. !
-!z(1) = ! z(1) from file, first radial point on C-D nozzle
-
-!write(*,*)'ENTER MESH GRANULARITY IN RADIAL DIRECTION: '
-!read(*,*)mesh_size
-mesh_size = 20
+!
+write(*,*)'ENTER MESH GRANULARITY IN RADIAL DIRECTION: '
+read(*,*)mesh_size
+!mesh_size = 20
 !
 allocate(x_coord(mesh_size),y_coord(mesh_size),z_coord(mesh_size))
 !

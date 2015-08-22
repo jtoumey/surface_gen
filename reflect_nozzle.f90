@@ -24,14 +24,14 @@ IMPLICIT NONE
 character(len=25  ) :: file_name
 character(len=1000) :: buffer
 character(len=2   ) :: axis_value
-logical get_input,y_write
+logical get_input,z_write
 integer ii,num_points,iblnk
 double precision reflect_value
-double precision, dimension(:), allocatable :: x,y,reflect_points,dummy
+double precision, dimension(:), allocatable :: x,z,reflect_points,dummy
 !
 !...Variable initialization
 !
-y_write = .FALSE.
+z_write = .FALSE.
 !
 write(*,*)'ENTER INPUT FILE NAME: '
 read(*,*)file_name
@@ -58,28 +58,28 @@ endif
 !
 !...allocate memory for the columns in the file
 !
-allocate(x(num_points),y(num_points),reflect_points(num_points),dummy(num_points))
+allocate(x(num_points),z(num_points),reflect_points(num_points),dummy(num_points))
 !
 !...loop over lines in file
 !
 do ii = 1,num_points
-   read(2,*)x(ii),y(ii)
-   write(*,101)ii,x(ii),y(ii)
+   read(2,*)x(ii),z(ii)
+   write(*,101)ii,x(ii),z(ii)
 end do
 close(2)
 !
 write(*,*)'...FINISHED READING FILE.'
 write(*,202)num_points
 !
-write(*,*)'ENTER REFLECTION AXIS: [x/y axis, reflection value]: '
+write(*,*)'ENTER REFLECTION AXIS: [x/z axis, reflection value]: '
 read(*,*)axis_value,reflect_value
 !
 !...store the points to be reflected in a dummy array
 !
 if (axis_value == 'x') then
-   dummy = y
-   y_write = .TRUE.
-else if (axis_value == 'y') then
+   dummy = z
+   z_write = .TRUE.
+else if (axis_value == 'z') then
    dummy = x
 end if
 !   reflect the points
@@ -94,26 +94,26 @@ open(unit=7,file='output_points.dat',action="write",status="replace")
 !...write original points
 !
 do ii = 1,num_points
-   write(7,302)x(ii),y(ii)
+   write(7,302)x(ii),z(ii)
 end do
 !
-if (y_write) then
+if (z_write) then
    do ii = 1,num_points
       write(7,302)x(ii),reflect_points(ii)
    end do
 else
    do ii = 1,num_points
-      write(7,302)reflect_points(ii),y(ii)
+      write(7,302)reflect_points(ii),z(ii)
    end do
 end if
 !
 !
 !
-call write_points(num_points,x,y)
+call write_points(num_points,x,z)
 !
 !...deallocate memory
 !
-deallocate(x,y)
+deallocate(x,z)
 deallocate(reflect_points)
 !
 !...Set input switch, so main routine will exit input loop
@@ -122,7 +122,7 @@ get_input = .TRUE.
 !
 !...Format statements
 !
-101 format(3x,'*** n = ',i4,3x,'x = ',f14.7,3x,'y = ',f14.7,' ***')
+101 format(3x,'*** n = ',i4,3x,'x = ',f14.7,3x,'z = ',f14.7,' ***')
 202 format(3x,'READ',i4,3x,'DATA POINTS.')
 302 format(3x,f12.5,3x,f12.5)
 !
