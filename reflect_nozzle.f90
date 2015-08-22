@@ -109,7 +109,7 @@ end if
 !
 !
 !
-call write_points(num_points,x,z)
+call write_points(num_points,x,z,reflect_value)
 !
 !...deallocate memory
 !
