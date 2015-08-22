@@ -25,7 +25,7 @@ PI = 4.D0 * DATAN(1.D0)
 
 !write(*,*)'ENTER MESH GRANULARITY IN RADIAL DIRECTION: '
 !read(*,*)mesh_size
-mesh_size = 12
+mesh_size = 20
 !
 allocate(x_coord(mesh_size),y_coord(mesh_size),z_coord(mesh_size))
 !
