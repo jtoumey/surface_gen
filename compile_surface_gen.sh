@@ -13,5 +13,5 @@ x,-1
 
 "
 
-diff output_points.dat output_points_bl.dat | tee output_test_2D.dat
-diff CD_nozzle_3D.dat CD_nozzle_3D_bl.dat | tee output_test_3D.dat
+diff output_points.dat output_points_bl.dat
+diff CD_nozzle_3D.dat CD_nozzle_3D_bl.dat
