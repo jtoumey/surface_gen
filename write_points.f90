@@ -83,10 +83,7 @@ end do
 !
 close(7)
 
-! call triangulation sub-routine
-   ! 1. triangulate intake
-   ! 2. triangulate nozzle skin
-   ! 3. triangulate outlet
+
 
 
 close(7)
