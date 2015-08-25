@@ -25,12 +25,15 @@ character(len=25  ) :: file_name
 character(len=1000) :: buffer
 character(len=2   ) :: axis_value
 logical get_input,z_write
-integer ii,num_points,iblnk
+integer ii,jj,num_points,iblnk,mesh_size
 double precision reflect_value
 double precision, dimension(:), allocatable :: x,z,reflect_points,dummy
+double precision, dimension(:), allocatable :: x_coord,y_coord,z_coord
+double precision d,theta,angle,PI
 !
 !...Variable initialization
 !
+PI = 4.D0 * DATAN(1.D0)
 z_write = .FALSE.
 !
 write(*,*)'ENTER INPUT FILE NAME: '
@@ -87,34 +90,50 @@ do ii = 1,num_points
    reflect_points(ii) = 2. * reflect_value - dummy(ii)
 end do
 !
-!...write output to file
+!...write 2D output to file
 !
-open(unit=7,file='output_points.dat',action="write",status="replace")
+call write_points_2D(z_write,num_points,x,z,reflect_points)
 !
-!...write original points
+!*************************************************************************!
+!                                                                         !
+! 3D extrusion of nozzle                                                  !
+!                                                                         !
+!*************************************************************************!
+!
+write(*,*)'ENTER MESH GRANULARITY IN RADIAL DIRECTION: '
+read(*,*)mesh_size
+!
+allocate(x_coord(mesh_size),y_coord(mesh_size),z_coord(mesh_size))
+!
+theta = 2. * PI / mesh_size
+!
+!...move axially along C-D nozzle
 !
 do ii = 1,num_points
-   write(7,302)x(ii),z(ii)
+   !
+   d = abs(z(ii) - reflect_value) ! axis is what points are reflected about
+   !
+   !...move radially along C-D nozzle
+   !
+   do jj = 1,mesh_size
+      !
+      x_coord(jj) = x(ii) ! same x-coordinate as in file
+      y_coord(jj) = d * sin(theta * (jj-1))
+      z_coord(jj) = d * cos(theta * (jj-1)) + reflect_value
+      !
+   end do
+   !
+   !...write current three x, y, and z arrays to a file, append mode
+   !
+   call write_points(mesh_size,x_coord,y_coord,z_coord)
+   !
 end do
-!
-if (z_write) then
-   do ii = 1,num_points
-      write(7,302)x(ii),reflect_points(ii)
-   end do
-else
-   do ii = 1,num_points
-      write(7,302)reflect_points(ii),z(ii)
-   end do
-end if
-!
-!
-!
-call write_points(num_points,x,z,reflect_value)
 !
 !...deallocate memory
 !
 deallocate(x,z)
-deallocate(reflect_points)
+deallocate(x_coord,y_coord,z_coord)
+deallocate(reflect_points,dummy)
 !
 !...Set input switch, so main routine will exit input loop
 !
@@ -124,6 +143,5 @@ get_input = .TRUE.
 !
 101 format(3x,'*** n = ',i4,3x,'x = ',f14.7,3x,'z = ',f14.7,' ***')
 202 format(3x,'READ',i4,3x,'DATA POINTS.')
-302 format(3x,f12.5,3x,f12.5)
 !
 END SUBROUTINE REFLECT_NOZZLE

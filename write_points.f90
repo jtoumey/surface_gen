@@ -25,67 +25,32 @@
 !                                   surface.                              !
 !                                                                         !
 !*************************************************************************!
-SUBROUTINE write_points(num_points,x,z,reflect_value)
+SUBROUTINE write_points(mesh_size,x_coord,y_coord,z_coord)
 IMPLICIT NONE
-!
-!...Define PI as constant
-double precision PI
 !
 !...input variables (from previous routine)
 !
-integer num_points
-double precision, dimension(num_points) :: x,z
-double precision reflect_value
+integer mesh_size
+double precision, dimension(mesh_size) :: x_coord,y_coord,z_coord
 !
 !...local variables
 !
-integer ii,jj,mesh_size
 integer mm
-double precision, dimension(:), allocatable :: x_coord,y_coord,z_coord
-double precision d,theta,angle
 !
-PI = 4.D0 * DATAN(1.D0)
+!...open output file
 !
-write(*,*)'ENTER MESH GRANULARITY IN RADIAL DIRECTION: '
-read(*,*)mesh_size
-!
-allocate(x_coord(mesh_size),y_coord(mesh_size),z_coord(mesh_size))
-!
-theta = 2. * PI / mesh_size
-!
-!   open output file
 open(unit=7,file='CD_nozzle_3D.dat',access='APPEND',status='unknown')
 !
-!...move axially along C-D nozzle
+!...write current three x, y, and z arrays to a file, append mode
 !
-do ii = 1,num_points
+do mm = 1,mesh_size
    !
-   d = abs(z(ii) - reflect_value) ! axis is what points are reflected about
+   write(7,101)x_coord(mm),y_coord(mm),z_coord(mm)
    !
-   !...move radially along C-D nozzle
-   !
-   do jj = 1,mesh_size
-      !
-      x_coord(jj) = x(ii) ! same x-coordinate as in file
-      y_coord(jj) = d * sin(theta * (jj-1))
-      z_coord(jj) = d * cos(theta * (jj-1)) + reflect_value
-      !
-   end do
-   !
-   !...write current three x, y, and z arrays to a file, append mode
-   !
-   do mm = 1,mesh_size
-      write(7,101)x_coord(mm),y_coord(mm),z_coord(mm)
-   end do
 end do
 !
 !...close output file
 !
-close(7)
-
-
-
-
 close(7)
 !
 101 format(f12.6,3x,f12.6,3x,f12.6,3x)
