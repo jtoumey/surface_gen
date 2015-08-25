@@ -37,9 +37,9 @@ double precision, dimension(mesh_size) :: x_coord,y_coord,z_coord
 !
 integer mm
 !
-!...open output file
+!...open file
 !
-open(unit=7,file='CD_nozzle_3D.dat',access='APPEND',status='unknown')
+open(unit=7,file='CD_nozzle_3D.dat',access='APPEND',status='old')
 !
 !...write current three x, y, and z arrays to a file, append mode
 !

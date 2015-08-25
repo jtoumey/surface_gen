@@ -24,7 +24,7 @@ IMPLICIT NONE
 character(len=25  ) :: file_name
 character(len=1000) :: buffer
 character(len=2   ) :: axis_value
-logical get_input,z_write
+logical get_input,z_write,file_exists
 integer ii,jj,num_points,iblnk,mesh_size
 double precision reflect_value
 double precision, dimension(:), allocatable :: x,z,reflect_points,dummy
@@ -99,6 +99,24 @@ call write_points_2D(z_write,num_points,x,z,reflect_points)
 ! 3D extrusion of nozzle                                                  !
 !                                                                         !
 !*************************************************************************!
+!
+!...test if file exists
+!
+inquire(file='CD_nozzle_3D.dat',exist=file_exists)
+!
+if ( file_exists ) then
+      !
+      !...open with status 'replace' to overwrite
+      open(unit=7,file='CD_nozzle_3D.dat',access='APPEND',status='replace')
+      close(unit=7)
+      !
+else
+   ! 
+   !...open with status 'new' to create a new file if it doesn't exist
+   open(unit=7,file='CD_nozzle_3D.dat',access='APPEND',status='new')
+   close(unit=7)
+   !
+endif
 !
 write(*,*)'ENTER MESH GRANULARITY IN RADIAL DIRECTION: '
 read(*,*)mesh_size
