@@ -131,7 +131,7 @@ do ii = 1,num_points
    !
    d = abs(z(ii) - reflect_value) ! axis is what points are reflected about
    !
-   !...move radially along C-D nozzle
+   !...move radially along C-D nozzlenu
    !
    do jj = 1,mesh_size
       !
