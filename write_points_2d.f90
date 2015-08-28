@@ -14,7 +14,7 @@ integer ii
 !
 !...write output to file
 !
-open(unit=7,file='output_points.dat',action="write",status="replace")
+open(unit=7,file='cd_nozzle_2d.dat',action="write",status="replace")
 !
 !...write original points
 !
