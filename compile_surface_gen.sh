@@ -1,5 +1,5 @@
 #
-gfortran surface_gen.f90 reflect_nozzle.f90 write_points.f90 write_points_2d.f90 hermite_nozzle.f90 -o surface_gen.o
+gfortran surface_gen.f90 reflect_nozzle.f90 write_points.f90 write_points_2d.f90 query_file.f90 hermite_nozzle.f90 -o surface_gen.o
 #
 ./surface_gen.o <<< "
 
@@ -13,5 +13,5 @@ x,-1
 
 "
 
-diff output_points.dat output_points_bl.dat
-diff CD_nozzle_3D.dat CD_nozzle_3D_bl.dat
+diff cd_nozzle_2d.dat cd_nozzle_2d_bl.dat | tee diff_2d.dat
+diff cd_nozzle_3d.dat cd_nozzle_3d_bl.dat | tee diff_3d.dat
