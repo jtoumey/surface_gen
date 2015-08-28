@@ -77,6 +77,12 @@ write(*,202)num_points
 write(*,*)'ENTER REFLECTION AXIS: [x/z axis, reflection value]: '
 read(*,*)axis_value,reflect_value
 !
+!*************************************************************************!
+!                                                                         !
+! 2D reflection of nozzle                                                  !
+!                                                                         !
+!*************************************************************************!
+!
 !...store the points to be reflected in a dummy array
 !
 if (axis_value == 'x') then
@@ -102,18 +108,18 @@ call write_points_2D(z_write,num_points,x,z,reflect_points)
 !
 !...test if file exists
 !
-inquire(file='CD_nozzle_3D.dat',exist=file_exists)
+inquire(file='cd_nozzle_3d.dat',exist=file_exists)
 !
 if ( file_exists ) then
       !
       !...open with status 'replace' to overwrite
-      open(unit=7,file='CD_nozzle_3D.dat',access='APPEND',status='replace')
+      open(unit=7,file='cd_nozzle_3d.dat',access='APPEND',status='replace')
       close(unit=7)
       !
 else
    ! 
    !...open with status 'new' to create a new file if it doesn't exist
-   open(unit=7,file='CD_nozzle_3D.dat',access='APPEND',status='new')
+   open(unit=7,file='cd_nozzle_3d.dat',access='APPEND',status='new')
    close(unit=7)
    !
 endif
