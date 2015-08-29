@@ -57,7 +57,8 @@ do while (.NOT. get_input)
    !
 end do
 !
-write(*,*)'FINISHED GENERATING OUTPUT FILE output_points.dat.'
+write(*,*)'FINISHED GENERATING 2D OUTPUT FILE: cd_nozzle_2d.dat.'
+write(*,*)'FINISHED GENERATING 3D OUTPUT FILE: cd_nozzle_3d.dat.'
 write(*,*)'DONE.'
 !
 END 

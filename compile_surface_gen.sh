@@ -1,5 +1,5 @@
 #
-gfortran surface_gen.f90 reflect_nozzle.f90 write_points.f90 write_points_2d.f90 query_file.f90 hermite_nozzle.f90 -o surface_gen.o
+gfortran surface_gen.f90 reflect_nozzle.f90 write_points_2d.f90 write_points_3d.f90 query_file.f90 hermite_nozzle.f90 -o surface_gen.o
 #
 ./surface_gen.o <<< "
 

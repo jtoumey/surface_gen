@@ -98,7 +98,7 @@ end do
 !
 !...write 2D output to file
 !
-call write_points_2D(z_write,num_points,x,z,reflect_points)
+call write_points_2d(z_write,num_points,x,z,reflect_points)
 !
 !*************************************************************************!
 !                                                                         !
@@ -135,7 +135,7 @@ do ii = 1,num_points
    !
    !...write current three x, y, and z arrays to a file, append mode
    !
-   call write_points(mesh_size,x_coord,y_coord,z_coord)
+   call write_points_3d(mesh_size,x_coord,y_coord,z_coord)
    !
 end do
 !

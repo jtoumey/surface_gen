@@ -25,7 +25,7 @@
 !                                   surface.                              !
 !                                                                         !
 !*************************************************************************!
-SUBROUTINE write_points(mesh_size,x_coord,y_coord,z_coord)
+SUBROUTINE WRITE_POINTS_3D(mesh_size,x_coord,y_coord,z_coord)
 IMPLICIT NONE
 !
 !...input variables (from previous routine)
@@ -54,4 +54,4 @@ end do
 close(7)
 !
 101 format(f12.6,3x,f12.6,3x,f12.6,3x)
-END SUBROUTINE WRITE_POINTS
+END SUBROUTINE WRITE_POINTS_3D
