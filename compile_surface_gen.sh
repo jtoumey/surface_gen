@@ -13,5 +13,5 @@ x,-1
 
 "
 
-diff cd_nozzle_2d.dat cd_nozzle_2d_bl.dat | tee diff_2d.dat
-diff cd_nozzle_3d.dat cd_nozzle_3d_bl.dat | tee diff_3d.dat
+diff cd_nozzle_2d.dat ./test/cd_nozzle_2d_bl.dat | tee ./test/diff_2d.dat
+diff cd_nozzle_3d.dat ./test/cd_nozzle_3d_bl.dat | tee ./test/diff_3d.dat

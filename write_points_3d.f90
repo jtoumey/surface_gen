@@ -20,7 +20,7 @@
 !                z               array of corresponding z coordinates     !
 !                reflect_value   value of reflection axis for curve       !
 !                                                                         !
-!  Output Files: CD_nozzle_3D.dat   Output file containing x, y, and z    !
+!  Output Files: cd_nozzle_3D.dat   Output file containing x, y, and z    !
 !                                   coordinates of points on the nozzle   !
 !                                   surface.                              !
 !                                                                         !
